@@ -45,6 +45,11 @@ class GhibliMoviesTest(TestCase):
         if len(movies):
             self.assertIsNotNone(movies[0].get('id'))
 
+    def test_that_api_response_is_correctly_passed_to_template_context(self) -> None:
+        movies = GhibliAPI.get_movies_and_their_actors()
+        response = self.client.get(reverse('movies:list'))
+        self.assertEqual(movies, response.context['movies'])
+
     def test_that_page_was_cached_between_requests(self) -> None:
         self.clear_movies_cache()
         execution_time_before_cache = timeit.timeit(
