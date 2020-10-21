@@ -1,5 +1,6 @@
 # An implementation of the Ghibli movie backend
-This project implements the [https://ghibliapi.herokuapp.com/](Ghibli API) in a Django application.
+This project implements the [https://ghibliapi.herokuapp.com/](Ghibli API) in a Django application. 
+It serves a page listing the Ghibli movies at [http://localhost:8000/movies/](http://localhost:8000/movies/)
 
 ![image](ghibli.png)
 Screenshot of application
@@ -42,7 +43,7 @@ Screenshot of application
   # gunicorn
   gunicorn --bind 0.0.0.0:8000 sennder.wsgi:application
   ```
-- You should be able to access the application at [https://localhost:8000](https://localhost:8000).
+- You should be able to access the application at [http://localhost:8000](http://localhost:8000).
 
 
 ### Docker Deployment
@@ -52,7 +53,7 @@ In the project root, you can run:
 docker-compose up --build
 ```
 This builds the images and creates the containers, and once this completes, you should be 
-able to view the application at [https://localhost:8000](https://localhost:8000) 
+able to view the application at [http://localhost:8000](http://localhost:8000) 
 
 
 ## Caching

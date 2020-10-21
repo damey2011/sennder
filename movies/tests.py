@@ -10,11 +10,12 @@ from movies.views import MoviesListView
 
 
 class GhibliMoviesTest(TestCase):
-    @staticmethod
-    def clear_movies_cache() -> None:
-        default_cache = caches['default']
-        if MoviesListView.cache_key in default_cache:
-            default_cache.delete(MoviesListView.cache_key)
+    def setUp(self) -> None:
+        self.default_cache = caches['default']
+
+    def clear_movies_cache(self) -> None:
+        if MoviesListView.cache_key in self.default_cache:
+            self.default_cache.delete(MoviesListView.cache_key)
 
     def test_movie_page_url_resolves_correctly(self) -> None:
         self.assertEqual(reverse('movies:list'), '/movies/')
@@ -33,15 +34,22 @@ class GhibliMoviesTest(TestCase):
             GhibliAPI.get(f'{GhibliAPI.BASE_URL}/fkdnfif')
 
     def test_that_ghibli_people_function_returns_valid_data(self) -> None:
-        self.assertIsInstance(GhibliAPI._list_people(), list)
+        people = GhibliAPI._list_people()
+        self.assertIsInstance(people, list)
+        if len(people):
+            self.assertIsNotNone(people[0].get('id'))
 
     def test_that_ghibli_movies_function_returns_valid_data(self) -> None:
-        self.assertIsInstance(GhibliAPI._list_movies(), list)
+        movies = GhibliAPI._list_movies()
+        self.assertIsInstance(movies, list)
+        if len(movies):
+            self.assertIsNotNone(movies[0].get('id'))
 
     def test_that_page_was_cached_between_requests(self) -> None:
         self.clear_movies_cache()
         execution_time_before_cache = timeit.timeit(lambda: self.client.get(reverse('movies:list')), number=1)
         execution_time_after_cache = timeit.timeit(lambda: self.client.get(reverse('movies:list')), number=1)
+        self.assertEqual(MoviesListView.cache_key in self.default_cache, True)
         self.assertGreater(execution_time_before_cache, execution_time_after_cache)
 
     def tearDown(self) -> None:
