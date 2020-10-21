@@ -1,8 +1,8 @@
 # An implementation of the Ghibli movie backend
-This project implements the Ghibli API in a Django application. The API can be found at 
-[https://ghibliapi.herokuapp.com/](https://ghibliapi.herokuapp.com).
+This project implements the [https://ghibliapi.herokuapp.com/](Ghibli API) in a Django application.
 
 ![image](ghibli.png)
+Screenshot of application
 
 # Setup
 ## Assumptions
