@@ -1,9 +1,6 @@
-from collections import defaultdict
-from threading import Thread
-from typing import Callable
-
-import requests
 import re
+import requests
+from collections import defaultdict
 
 
 class GhibliAPIException(BaseException):
@@ -33,20 +30,10 @@ class GhibliAPI:
     def _list_people(cls) -> list:
         return cls.get(f'{cls.BASE_URL}/people')
 
-    @staticmethod
-    def thread_request(result: list, function: Callable):
-        result += function()
-
     @classmethod
     def get_movies_and_their_actors(cls) -> list:
-        movies = list()
-        people = list()
-        threads = [
-            Thread(target=cls.thread_request, args=(movies, cls._list_movies)),
-            Thread(target=cls.thread_request, args=(people, cls._list_people)),
-        ]
-        [t.start() for t in threads]
-        [t.join() for t in threads]
+        movies = cls._list_movies()
+        people = cls._list_people()
         movies_to_people = defaultdict(lambda: list())
         for person in people:
             for movie in person.get('films'):

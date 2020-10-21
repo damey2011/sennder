@@ -47,8 +47,12 @@ class GhibliMoviesTest(TestCase):
 
     def test_that_page_was_cached_between_requests(self) -> None:
         self.clear_movies_cache()
-        execution_time_before_cache = timeit.timeit(lambda: self.client.get(reverse('movies:list')), number=1)
-        execution_time_after_cache = timeit.timeit(lambda: self.client.get(reverse('movies:list')), number=1)
+        execution_time_before_cache = timeit.timeit(
+            lambda: self.client.get(reverse('movies:list')), number=1
+        )
+        execution_time_after_cache = timeit.timeit(
+            lambda: self.client.get(reverse('movies:list')), number=1
+        )
         self.assertEqual(MoviesListView.cache_key in self.default_cache, True)
         self.assertGreater(execution_time_before_cache, execution_time_after_cache)
 
