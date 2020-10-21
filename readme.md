@@ -57,9 +57,9 @@ able to view the application at [https://localhost:8000](https://localhost:8000)
 
 ## Caching
 The non-dockerized setup of the application requires you to install 
-[memcached](https://memcached.org) if you want to use it but by default, the cache 
+[memcached](https://memcached.org) if you want to use it, but by default, the cache 
 uses the local memory to temporarily persist data from the API. If you have memcached 
 installed on your machine, then you can set environmental variable `USE_MEMCACHED` to `True` 
 and configure location where the memcached instance runs with the `MEMCACHED_HOST` 
-(defaults to `127.0.0.1:11211`) variable to use memcached as the caching backend. 
+variable (defaults to `127.0.0.1:11211`) to use memcached as the caching backend. 
 Whereas, the Docker setup uses memcached by default.
