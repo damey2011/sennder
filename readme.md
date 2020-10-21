@@ -63,3 +63,10 @@ installed on your machine, then you can set environmental variable `USE_MEMCACHE
 and configure location where the memcached instance runs with the `MEMCACHED_HOST` 
 variable (defaults to `127.0.0.1:11211`) to use memcached as the caching backend. 
 Whereas, the Docker setup uses memcached by default.
+
+
+## Tests
+To run the unit tests, either run the `run_tests.sh` or run:
+```bash
+python manage.py test
+```
