@@ -1,5 +1,5 @@
 # An implementation of the Ghibli movie backend
-This project implements the [https://ghibliapi.herokuapp.com/](Ghibli API) in a Django application. 
+This project implements the [Ghibli API](https://ghibliapi.herokuapp.com/) in a Django application. 
 It serves a page listing the Ghibli movies at [http://localhost:8000/movies/](http://localhost:8000/movies/)
 
 ![image](ghibli.png)
@@ -9,6 +9,8 @@ Screenshot of application
 ## Assumptions
 - You already have python3 installed, this was developed and tested in Python 3.8.
 - No pagination of any kind in the Ghibli API endpoints.
+- (optional) You have [Docker](https://docker.com) installed, if you wish to deploy 
+with docker.
 
 ## Deployment (Unix-based system)
 - Clone the project
