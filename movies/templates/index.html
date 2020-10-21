@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie List</title>
+    <style>
+        body {
+            font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            padding: 40px;
+        }
+
+        .container ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .container > ul > li {
+            padding: 24px;
+            box-shadow: 1px 6px 23px -10px #333333;
+            margin-bottom: 24px;
+            border-radius: 12px;
+        }
+
+        .casts {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .cast {
+            margin: 8px;
+            padding: 8px;
+            background: #333333;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Movies</h1>
+    <ul>
+        {% for movie in movies %}
+            <li>
+                <h2>{{ movie.title }}</h2>
+                <p>
+                    {{ movie.description }}
+                </p>
+                <h4>Cast</h4>
+                <ul class="casts">
+                    {% for person in movie.people %}
+                        <li class="cast">
+                            {{ person.name }}
+                        </li>
+                    {% empty %}
+                        <i>No information</i>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+</body>
+</html>

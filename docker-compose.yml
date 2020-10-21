@@ -1,0 +1,25 @@
+version: "3"
+services:
+  web:
+    build: .
+    volumes:
+      - .:/code
+    ports:
+      - 8000:80
+    depends_on:
+      - cache_layer
+    environment:
+      - IS_DEPLOYED_TO_DOCKER=True
+      - DEBUG=False
+      - ALLOWED_HOSTS=localhost,127.0.0.1
+      - MEMCACHED_HOST=cache_layer:11211
+      - USE_MEMCACHED=True
+    working_dir: /code
+    command: [sh, -c, "gunicorn --bind 0.0.0.0:80 sennder.wsgi:application"]
+  cache_layer:
+    image: memcached
+    ports:
+      - 11211:11211
+    entrypoint:
+      - memcached
+      - -m 64

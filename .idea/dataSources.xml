@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="" uuid="8b63229f-ea72-4229-8d56-4e7f3a6ac6bc">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/.coverage</jdbc-url>
+      <libraries>
+        <library>
+          <url>file://$USER_HOME$/Documents/Java Projects/StoreKeeper-master/library/sqlite-jdbc-3.8.11.1.jar</url>
+        </library>
+      </libraries>
+    </data-source>
+  </component>
+</project>
