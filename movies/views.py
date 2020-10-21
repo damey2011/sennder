@@ -7,7 +7,7 @@ from movies.api_service import GhibliAPI
 class MoviesListView(TemplateView):
     template_name = 'index.html'
     cache_key = 'movie_list'
-    cache_expiry = 300
+    cache_expiry = 60
 
     def get_context_data(self, **kwargs):
         ctx = super(MoviesListView, self).get_context_data(**kwargs)
